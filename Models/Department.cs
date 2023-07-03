@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 
 namespace Employee_Manager.Models
 {
-    public class Staffs
+    public class Department
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public DateTime dateOfBirth { get; set; }
-        public double salary { get; set; }
-        public string department { get; set; }
-        public string project { get; set; }
+        public string dep_name { get; set; }
         public DateTime creationDate { get; set; }
     }
-
 }
