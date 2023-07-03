@@ -2,8 +2,13 @@
 
 ## Still working with other functions
 
-Done: Employees
-On going: Departments, Projects
+**Finished:** 
+- Employees
+
+**On going:** 
+- Departments
+- Projects
+- Login
 
 ### Just a CRUD project using winform .NET framework, MVC architecture, and MariaDB
 
