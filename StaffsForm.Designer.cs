@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.staffs_grid = new System.Windows.Forms.DataGridView();
+            this.employees_grid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.project_dropdown = new System.Windows.Forms.ComboBox();
+            this.department_dropdown = new System.Windows.Forms.ComboBox();
+            this.dateOfBirth_box = new System.Windows.Forms.DateTimePicker();
+            this.creation_date_box = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,13 +45,14 @@
             this.salary_textbox = new System.Windows.Forms.TextBox();
             this.name_textbox = new System.Windows.Forms.TextBox();
             this.id_textbox = new System.Windows.Forms.TextBox();
-            this.creation_date_box = new System.Windows.Forms.DateTimePicker();
-            this.dateOfBirth_box = new System.Windows.Forms.DateTimePicker();
             this.edit_button = new System.Windows.Forms.Button();
             this.add_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
-            this.department_dropdown = new System.Windows.Forms.ComboBox();
-            this.project_dropdown = new System.Windows.Forms.ComboBox();
+            this.clear_button = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.search_button = new System.Windows.Forms.Button();
+            this.search_textbox = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,22 +61,25 @@
             this.projectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clear_button = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.staffs_grid)).BeginInit();
+            this.select_id_button = new System.Windows.Forms.Button();
+            this.select_id_textbox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.employees_grid)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // staffs_grid
+            // employees_grid
             // 
-            this.staffs_grid.AllowUserToAddRows = false;
-            this.staffs_grid.AllowUserToDeleteRows = false;
-            this.staffs_grid.AutoGenerateColumns = false;
-            this.staffs_grid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.staffs_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.staffs_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.employees_grid.AllowUserToAddRows = false;
+            this.employees_grid.AllowUserToDeleteRows = false;
+            this.employees_grid.AutoGenerateColumns = false;
+            this.employees_grid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.employees_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.employees_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.dateOfBirthDataGridViewTextBoxColumn,
@@ -79,16 +87,17 @@
             this.departmentDataGridViewTextBoxColumn,
             this.projectDataGridViewTextBoxColumn,
             this.creationDateDataGridViewTextBoxColumn});
-            this.staffs_grid.DataSource = this.staffBindingSource;
-            this.staffs_grid.Location = new System.Drawing.Point(44, 393);
-            this.staffs_grid.Name = "staffs_grid";
-            this.staffs_grid.ReadOnly = true;
-            this.staffs_grid.Size = new System.Drawing.Size(810, 265);
-            this.staffs_grid.TabIndex = 0;
+            this.employees_grid.DataSource = this.staffBindingSource;
+            this.employees_grid.Location = new System.Drawing.Point(10, 368);
+            this.employees_grid.Margin = new System.Windows.Forms.Padding(10);
+            this.employees_grid.Name = "employees_grid";
+            this.employees_grid.ReadOnly = true;
+            this.employees_grid.Size = new System.Drawing.Size(880, 322);
+            this.employees_grid.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.project_dropdown);
             this.panel1.Controls.Add(this.department_dropdown);
             this.panel1.Controls.Add(this.dateOfBirth_box);
@@ -103,10 +112,49 @@
             this.panel1.Controls.Add(this.salary_textbox);
             this.panel1.Controls.Add(this.name_textbox);
             this.panel1.Controls.Add(this.id_textbox);
-            this.panel1.Location = new System.Drawing.Point(203, 23);
+            this.panel1.Location = new System.Drawing.Point(10, 10);
+            this.panel1.Margin = new System.Windows.Forms.Padding(10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 336);
+            this.panel1.Size = new System.Drawing.Size(521, 338);
             this.panel1.TabIndex = 1;
+            // 
+            // project_dropdown
+            // 
+            this.project_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.project_dropdown.FormattingEnabled = true;
+            this.project_dropdown.Location = new System.Drawing.Point(153, 242);
+            this.project_dropdown.Name = "project_dropdown";
+            this.project_dropdown.Size = new System.Drawing.Size(336, 28);
+            this.project_dropdown.TabIndex = 29;
+            // 
+            // department_dropdown
+            // 
+            this.department_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.department_dropdown.FormattingEnabled = true;
+            this.department_dropdown.Location = new System.Drawing.Point(153, 199);
+            this.department_dropdown.Name = "department_dropdown";
+            this.department_dropdown.Size = new System.Drawing.Size(336, 28);
+            this.department_dropdown.TabIndex = 28;
+            // 
+            // dateOfBirth_box
+            // 
+            this.dateOfBirth_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateOfBirth_box.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateOfBirth_box.Location = new System.Drawing.Point(153, 112);
+            this.dateOfBirth_box.Name = "dateOfBirth_box";
+            this.dateOfBirth_box.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateOfBirth_box.Size = new System.Drawing.Size(336, 26);
+            this.dateOfBirth_box.TabIndex = 24;
+            // 
+            // creation_date_box
+            // 
+            this.creation_date_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creation_date_box.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.creation_date_box.Location = new System.Drawing.Point(153, 291);
+            this.creation_date_box.Name = "creation_date_box";
+            this.creation_date_box.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.creation_date_box.Size = new System.Drawing.Size(336, 26);
+            this.creation_date_box.TabIndex = 2;
             // 
             // label7
             // 
@@ -183,7 +231,7 @@
             this.salary_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salary_textbox.Location = new System.Drawing.Point(153, 155);
             this.salary_textbox.Name = "salary_textbox";
-            this.salary_textbox.Size = new System.Drawing.Size(204, 26);
+            this.salary_textbox.Size = new System.Drawing.Size(336, 26);
             this.salary_textbox.TabIndex = 13;
             // 
             // name_textbox
@@ -191,7 +239,7 @@
             this.name_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name_textbox.Location = new System.Drawing.Point(153, 63);
             this.name_textbox.Name = "name_textbox";
-            this.name_textbox.Size = new System.Drawing.Size(204, 26);
+            this.name_textbox.Size = new System.Drawing.Size(336, 26);
             this.name_textbox.TabIndex = 11;
             // 
             // id_textbox
@@ -199,36 +247,17 @@
             this.id_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.id_textbox.Location = new System.Drawing.Point(153, 17);
             this.id_textbox.Name = "id_textbox";
-            this.id_textbox.Size = new System.Drawing.Size(204, 26);
+            this.id_textbox.Size = new System.Drawing.Size(336, 26);
             this.id_textbox.TabIndex = 10;
-            // 
-            // creation_date_box
-            // 
-            this.creation_date_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creation_date_box.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.creation_date_box.Location = new System.Drawing.Point(153, 291);
-            this.creation_date_box.Name = "creation_date_box";
-            this.creation_date_box.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.creation_date_box.Size = new System.Drawing.Size(204, 26);
-            this.creation_date_box.TabIndex = 2;
-            // 
-            // dateOfBirth_box
-            // 
-            this.dateOfBirth_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateOfBirth_box.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateOfBirth_box.Location = new System.Drawing.Point(153, 112);
-            this.dateOfBirth_box.Name = "dateOfBirth_box";
-            this.dateOfBirth_box.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateOfBirth_box.Size = new System.Drawing.Size(204, 26);
-            this.dateOfBirth_box.TabIndex = 24;
             // 
             // edit_button
             // 
-            this.edit_button.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.edit_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(181)))), ((int)(((byte)(210)))));
             this.edit_button.FlatAppearance.BorderSize = 0;
             this.edit_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.edit_button.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edit_button.Location = new System.Drawing.Point(683, 162);
+            this.edit_button.ForeColor = System.Drawing.Color.White;
+            this.edit_button.Location = new System.Drawing.Point(41, 278);
             this.edit_button.Name = "edit_button";
             this.edit_button.Size = new System.Drawing.Size(126, 40);
             this.edit_button.TabIndex = 25;
@@ -238,11 +267,12 @@
             // 
             // add_button
             // 
-            this.add_button.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.add_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(165)))), ((int)(((byte)(76)))));
             this.add_button.FlatAppearance.BorderSize = 0;
             this.add_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_button.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.add_button.Location = new System.Drawing.Point(683, 106);
+            this.add_button.ForeColor = System.Drawing.Color.White;
+            this.add_button.Location = new System.Drawing.Point(190, 219);
             this.add_button.Name = "add_button";
             this.add_button.Size = new System.Drawing.Size(126, 40);
             this.add_button.TabIndex = 26;
@@ -252,11 +282,12 @@
             // 
             // delete_button
             // 
-            this.delete_button.BackColor = System.Drawing.Color.IndianRed;
+            this.delete_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(76)))), ((int)(((byte)(101)))));
             this.delete_button.FlatAppearance.BorderSize = 0;
             this.delete_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delete_button.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delete_button.Location = new System.Drawing.Point(683, 224);
+            this.delete_button.ForeColor = System.Drawing.Color.White;
+            this.delete_button.Location = new System.Drawing.Point(190, 278);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(126, 40);
             this.delete_button.TabIndex = 27;
@@ -264,23 +295,71 @@
             this.delete_button.UseVisualStyleBackColor = false;
             this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
-            // department_dropdown
+            // clear_button
             // 
-            this.department_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.department_dropdown.FormattingEnabled = true;
-            this.department_dropdown.Location = new System.Drawing.Point(153, 199);
-            this.department_dropdown.Name = "department_dropdown";
-            this.department_dropdown.Size = new System.Drawing.Size(204, 28);
-            this.department_dropdown.TabIndex = 28;
+            this.clear_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(161)))), ((int)(((byte)(27)))));
+            this.clear_button.FlatAppearance.BorderSize = 0;
+            this.clear_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear_button.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear_button.ForeColor = System.Drawing.Color.White;
+            this.clear_button.Location = new System.Drawing.Point(41, 219);
+            this.clear_button.Name = "clear_button";
+            this.clear_button.Size = new System.Drawing.Size(126, 40);
+            this.clear_button.TabIndex = 28;
+            this.clear_button.Text = "Clear";
+            this.clear_button.UseVisualStyleBackColor = false;
+            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
             // 
-            // project_dropdown
+            // panel2
             // 
-            this.project_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.project_dropdown.FormattingEnabled = true;
-            this.project_dropdown.Location = new System.Drawing.Point(153, 242);
-            this.project_dropdown.Name = "project_dropdown";
-            this.project_dropdown.Size = new System.Drawing.Size(204, 28);
-            this.project_dropdown.TabIndex = 29;
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(900, 700);
+            this.panel2.TabIndex = 29;
+            // 
+            // search_button
+            // 
+            this.search_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(235)))), ((int)(((byte)(247)))));
+            this.search_button.FlatAppearance.BorderSize = 0;
+            this.search_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.search_button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(113)))), ((int)(((byte)(203)))));
+            this.search_button.Location = new System.Drawing.Point(256, 63);
+            this.search_button.Name = "search_button";
+            this.search_button.Size = new System.Drawing.Size(60, 27);
+            this.search_button.TabIndex = 31;
+            this.search_button.Text = "Search name";
+            this.search_button.UseVisualStyleBackColor = false;
+            this.search_button.Click += new System.EventHandler(this.search_button_Click);
+            // 
+            // search_textbox
+            // 
+            this.search_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_textbox.Location = new System.Drawing.Point(41, 63);
+            this.search_textbox.Name = "search_textbox";
+            this.search_textbox.Size = new System.Drawing.Size(205, 26);
+            this.search_textbox.TabIndex = 30;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.search_textbox);
+            this.panel3.Controls.Add(this.search_button);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.select_id_button);
+            this.panel3.Controls.Add(this.select_id_textbox);
+            this.panel3.Controls.Add(this.add_button);
+            this.panel3.Controls.Add(this.clear_button);
+            this.panel3.Controls.Add(this.delete_button);
+            this.panel3.Controls.Add(this.edit_button);
+            this.panel3.Location = new System.Drawing.Point(544, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(346, 338);
+            this.panel3.TabIndex = 32;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -335,49 +414,73 @@
             // 
             this.staffBindingSource.DataSource = typeof(Employee_Manager.Models.Employee);
             // 
-            // departmentBindingSource
+            // select_id_button
             // 
-            this.departmentBindingSource.DataSource = typeof(Employee_Manager.Models.Department);
+            this.select_id_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(235)))), ((int)(((byte)(247)))));
+            this.select_id_button.FlatAppearance.BorderSize = 0;
+            this.select_id_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.select_id_button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select_id_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(113)))), ((int)(((byte)(203)))));
+            this.select_id_button.Location = new System.Drawing.Point(255, 119);
+            this.select_id_button.Name = "select_id_button";
+            this.select_id_button.Size = new System.Drawing.Size(61, 26);
+            this.select_id_button.TabIndex = 34;
+            this.select_id_button.Text = "Select";
+            this.select_id_button.UseVisualStyleBackColor = false;
+            this.select_id_button.Click += new System.EventHandler(this.select_id_button_Click);
             // 
-            // clear_button
+            // select_id_textbox
             // 
-            this.clear_button.BackColor = System.Drawing.Color.Yellow;
-            this.clear_button.FlatAppearance.BorderSize = 0;
-            this.clear_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear_button.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clear_button.Location = new System.Drawing.Point(683, 285);
-            this.clear_button.Name = "clear_button";
-            this.clear_button.Size = new System.Drawing.Size(126, 40);
-            this.clear_button.TabIndex = 28;
-            this.clear_button.Text = "Clear";
-            this.clear_button.UseVisualStyleBackColor = false;
-            this.clear_button.Click += new System.EventHandler(this.button1_Click);
+            this.select_id_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select_id_textbox.Location = new System.Drawing.Point(41, 119);
+            this.select_id_textbox.Name = "select_id_textbox";
+            this.select_id_textbox.Size = new System.Drawing.Size(204, 26);
+            this.select_id_textbox.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(37, 92);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 20);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Enter ID to fill form";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(37, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 20);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Search for name";
             // 
             // StaffsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.Controls.Add(this.clear_button);
-            this.Controls.Add(this.edit_button);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.add_button);
-            this.Controls.Add(this.delete_button);
-            this.Controls.Add(this.staffs_grid);
+            this.Controls.Add(this.employees_grid);
+            this.Controls.Add(this.panel2);
             this.Name = "StaffsForm";
             this.Size = new System.Drawing.Size(900, 700);
-            ((System.ComponentModel.ISupportInitialize)(this.staffs_grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employees_grid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView staffs_grid;
+        private System.Windows.Forms.DataGridView employees_grid;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
@@ -404,7 +507,14 @@
         private System.Windows.Forms.Button delete_button;
         private System.Windows.Forms.ComboBox project_dropdown;
         private System.Windows.Forms.ComboBox department_dropdown;
-        private System.Windows.Forms.BindingSource departmentBindingSource;
         private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox search_textbox;
+        private System.Windows.Forms.Button search_button;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button select_id_button;
+        private System.Windows.Forms.TextBox select_id_textbox;
     }
 }

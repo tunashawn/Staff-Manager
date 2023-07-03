@@ -68,20 +68,21 @@ namespace Employee_Manager.Models
 
         private Employee EmployeeReader(MySqlDataReader reader)
         {
-            var employee = new Employee();
+            var employee = new Employee
+            {
+                id = reader.GetInt32(0),
+                name = reader.GetString(1),
+                dateOfBirth = reader.GetDateTime(2),
+                salary = reader.GetDouble(3),
+                department = reader.GetValue(4).ToString(),
+                project = reader.GetValue(5).ToString(),
+                creationDate = reader.GetDateTime(6)
+            };
 
-            employee.id = reader.GetInt32(0);
-            employee.name = reader.GetString(1);
-            employee.dateOfBirth = reader.GetDateTime(2);
-            employee.salary = reader.GetDouble(3);
-            employee.department = reader.GetString(4);
-            employee.project = reader.GetString(5);
-            employee.creationDate = reader.GetDateTime(6);
-            
             return employee;
         }
 
-        private Employee GetEmployee(int id)
+        public Employee GetEmployee(int id)
         {
             var reader = GetReader($"SELECT s.id, s.fullname, s.dateofbirth, " +
                                     $"s.salary, d.dep_name, p.pro_name, s.creationdate " +
@@ -151,37 +152,39 @@ namespace Employee_Manager.Models
         }
 
 
-        public void AddNewStaff(Employee employee)
+        public void AddNewEmployee(Employee employee)
         {
             ExecuteQuerry($"INSERT INTO staffs VALUES(" +
                             $"{employee.id}, " +
                             $"\'{employee.name}\', " +
-                            $"\'{employee.dateOfBirdString}\', " +
+                            $"\'{employee.dateOfBirthString}\', " +
                             $"{employee.salary}, " +
                             $"{employee.department}, " +
                             $"{employee.project}, " +
                             $"\'{employee.creationDateString}\');");
         }
 
-        public void DeleteStaff(Employee employee)
+        public void DeleteStaff(string employee_id)
         {
-            ExecuteQuerry($"DELETE FROM staffs WHERE staffs.id = \'{employee.id}\';");
+            ExecuteQuerry($"DELETE FROM staffs WHERE staffs.id = \'{employee_id}\';");
         }
-        public void EditStaff(Employee employee)
+        public void EditEmployee(Employee employee)
         {
-            ExecuteQuerry($"UPDATE staffs SET" +
-                            $"employee.name = \'{employee.name}\', " +
-                            $"employee.dateOfBird = \'{employee.dateOfBirdString}\', " +
-                            $"employee.salary = {employee.salary}, " +
-                            $"employee.department = {employee.department}, " +
-                            $"employee.project = {employee.project}, " +
-                            $"employee.creationDate = \'{employee.creationDateString}\'" +
+            Console.WriteLine(employee.ToString());
+            ExecuteQuerry($"UPDATE staffs SET " +
+                            $"staffs.fullName =  \'{employee.name}\', " +
+                            $"staffs.dateOfBirth = \'{employee.dateOfBirthString}\', " +
+                            $"staffs.salary = {employee.salary}, " +
+                            $"staffs.department = {employee.department}, " +
+                            $"staffs.project = {employee.project}, " +
+                            $"staffs.creationDate = \'{employee.creationDateString}\'" +
                             $"WHERE staffs.id = {employee.id};");
         }
 
-        public List<Employee> FindStaff(string emp_name)
+        public List<Employee> FindEmployee(string emp_name)
         {
-            return GetEmployees($"SELECT * FROM staffs WHERE staffs.fullName LIKE '%{emp_name}%';");
+            var querry = $"SELECT * FROM staffs WHERE staffs.fullName LIKE \'%{emp_name}%\';";
+            return GetEmployees(querry);
         }
 
         private void ExecuteQuerry(string querry)
@@ -200,6 +203,7 @@ namespace Employee_Manager.Models
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw ex;
             }
         }

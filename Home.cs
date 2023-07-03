@@ -16,8 +16,8 @@ namespace Employee_Manager
         {
             InitializeComponent();
             content_panel.Controls.Clear();
-            var d = new DepartmentsForm();
-            content_panel.Controls.Add(d);
+            var s = new StaffsForm();
+            content_panel.Controls.Add(s);
         }
 
         private void department_button_Click(object sender, EventArgs e)

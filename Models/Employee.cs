@@ -11,7 +11,7 @@ namespace Employee_Manager.Models
         public int id { get; set; }
         public string name { get; set; }
         public DateTime dateOfBirth { get; set; }
-        public String dateOfBirdString { get => dateOfBirth.ToString("yyyy-MM-dd"); }
+        public String dateOfBirthString { get => dateOfBirth.ToString("yyyy-MM-dd"); }
         public double salary { get; set; }
         public string department { get; set; }
         public string project { get; set; }
@@ -27,7 +27,7 @@ namespace Employee_Manager.Models
                 $"\nSalary = {salary}" +
                 $"\nDepartment = {department}" +
                 $"\nProject = {project}" +
-                $"\nCreation Date = {creationDate}\n";
+                $"\nCreation Date = {creationDateString}\n";
         }
     }
 
