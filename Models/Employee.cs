@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee_Manager.Models
 {
-    public class Staff
+    public class Employee
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -20,7 +20,7 @@ namespace Employee_Manager.Models
 
         public string ToString()
         {
-            return $"\nStaff Information:" +
+            return $"\nEmployee Information:" +
                 $"\nID = {this.id}" +
                 $"\nName = {name}" +
                 $"\nDate of Birth = {dateOfBirth.ToString("yyyy-MM-dd")}" +

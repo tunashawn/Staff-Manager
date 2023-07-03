@@ -333,7 +333,7 @@
             // 
             // staffBindingSource
             // 
-            this.staffBindingSource.DataSource = typeof(Employee_Manager.Models.Staff);
+            this.staffBindingSource.DataSource = typeof(Employee_Manager.Models.Employee);
             // 
             // departmentBindingSource
             // 

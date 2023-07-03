@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,101 +28,99 @@ namespace Employee_Manager.Models
             return new MySqlConnection(builder.ConnectionString);
         }
 
-        public Staff Login(string username, string password)
+        private MySqlDataReader GetReader(string querry)
         {
+            var connection = GetSqlConnection();
+            connection.Open();
+            var command = connection.CreateCommand();
 
+            command.CommandText = querry;
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            return reader;
+
+        }
+
+        public Employee Login(string username, string password)
+        {
             var id = -1;
             try
             {
-                var connection = GetSqlConnection();
-                connection.Open();
-                var command = connection.CreateCommand();
-
-                command.CommandText = $"SELECT u.staff FROM users AS u WHERE u.username = \"{username}\" AND u.`password` = \"{password}\";";
-                
-                var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                var reader = GetReader($"SELECT u.employee FROM users AS u WHERE u.username = \"{username}\" AND u.`password` = \"{password}\";");
 
                 while (reader.Read())
                 {
                     id = reader.GetInt32(0);
                 }
-
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
             if (id != -1)
             {
-                return GetStaff(id);
+                return GetEmployee(id);
             }
 
             return null;
 
         }
 
-        private Staff GetStaff(int id)
+        private Employee EmployeeReader(MySqlDataReader reader)
         {
-            var connection = GetSqlConnection();
-            connection.Open();
-            var command = connection.CreateCommand();
+            var employee = new Employee();
 
-            // SQL command
-            command.CommandText = $"SELECT s.id, s.fullName, s.dateOfBirth, s.salary, d.dep_name, p.pro_name, s.creationDate\r\nFROM staffs AS s, departments AS d, projects AS p \r\nWHERE s.id = {id} AND s.department = d.id AND s.project = p.id;\r\n";
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection); //Close connection asap
-
-            var staff = new Staff();
-            while (reader.Read())
-            {
-                staff.id = reader.GetInt32(0);
-                staff.name = reader.GetString(1);
-                staff.dateOfBirth = reader.GetDateTime(2);
-                staff.salary = reader.GetDouble(3);
-                staff.department = reader.GetString(4);
-                staff.project = reader.GetString(5);
-                staff.creationDate = reader.GetDateTime(6);
-            }
-            return staff;
+            employee.id = reader.GetInt32(0);
+            employee.name = reader.GetString(1);
+            employee.dateOfBirth = reader.GetDateTime(2);
+            employee.salary = reader.GetDouble(3);
+            employee.department = reader.GetString(4);
+            employee.project = reader.GetString(5);
+            employee.creationDate = reader.GetDateTime(6);
+            
+            return employee;
         }
 
-        public List<Staff> GetStaffs()
+        private Employee GetEmployee(int id)
         {
-            var staffList = new List<Staff>();
-            var connection = GetSqlConnection();
-            connection.Open();
-            var command = connection.CreateCommand();
+            var reader = GetReader($"SELECT s.id, s.fullname, s.dateofbirth, " +
+                                    $"s.salary, d.dep_name, p.pro_name, s.creationdate " +
+                                    $"FROM staffs as s, departments as d, projects as p " +
+                                    $"WHERE s.id = {id} and s.department = d.id and s.project = p.id;");
 
-            // SQL command
-            command.CommandText = "SELECT s.id, s.fullName, s.dateOfBirth, s.salary, d.dep_name, p.pro_name, s.creationDate\r\nFROM staffs AS s, departments AS d, projects AS p \r\nWHERE s.department = d.id AND s.project = p.id;\r\n";
+            var employee = new Employee();
+
+            reader.Read();
             
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection); //Close connection asap
+            employee = EmployeeReader(reader);
+            
+            return employee;
+        }
+
+        // GET ALL EMPLOYEES IN DEFAULT
+        public List<Employee> GetEmployees(string querry = "SELECT " +
+                                    "s.id, s.fullName, s.dateOfBirth, " +
+                                    "s.salary, d.dep_name, p.pro_name, s.creationDate " +
+                                    "FROM staffs AS s, departments AS d, projects AS p " +
+                                    "WHERE s.department = d.id AND s.project = p.id;")
+        {
+            var reader = GetReader(querry);
                
+            var staffList = new List<Employee>();
             
             while (reader.Read())
             {
-                var temp = new Staff();
-                temp.id = reader.GetInt32(0);
-                temp.name = reader.GetString(1);
-                temp.dateOfBirth = reader.GetDateTime(2);
-                temp.salary = reader.GetDouble(3);
-                temp.department = reader.GetString(4);
-                temp.project = reader.GetString(5);
-                temp.creationDate = reader.GetDateTime(6);
-                staffList.Add(temp);
+                var emp = EmployeeReader(reader);
+                staffList.Add(emp);
             }
             return staffList;
         }
 
         public List<Department> GetDepartments()
         {
+            var reader = GetReader("SELECT * FROM departments;"); 
+
             var departments = new List<Department>();
-            var connection = GetSqlConnection();
-            connection.Open();
-            var command = connection.CreateCommand();
-
-            command.CommandText = "SELECT * FROM departments;";
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             while (reader.Read())
             {
@@ -137,13 +136,8 @@ namespace Employee_Manager.Models
         public List<Project> GetProjects()
         {
             var projects = new List<Project>();
-            var connection = GetSqlConnection();
-            connection.Open();
-            var command = connection.CreateCommand();   
 
-            command.CommandText = "SELECT * FROM projects;";
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var reader = GetReader("SELECT * FROM projects;");
 
             while (reader.Read())
             {
@@ -157,26 +151,57 @@ namespace Employee_Manager.Models
         }
 
 
-        public void AddNewStaff(Staff staff)
+        public void AddNewStaff(Employee employee)
         {
-            sqlExecuter($"INSERT INTO staffs VALUES(" +
-                $"{staff.id}, " +
-                $"\'{staff.name}\', " +
-                $"\'{staff.dateOfBirdString}\', " +
-                $"{staff.salary}, " +
-                $"{staff.department}, " +
-                $"{staff.project}, " +
-                $"\'{staff.creationDateString}\');");
+            ExecuteQuerry($"INSERT INTO staffs VALUES(" +
+                            $"{employee.id}, " +
+                            $"\'{employee.name}\', " +
+                            $"\'{employee.dateOfBirdString}\', " +
+                            $"{employee.salary}, " +
+                            $"{employee.department}, " +
+                            $"{employee.project}, " +
+                            $"\'{employee.creationDateString}\');");
         }
 
-        private void sqlExecuter(string querry)
+        public void DeleteStaff(Employee employee)
         {
-            var connection = GetSqlConnection();
-            connection.Open();
-            var command = new MySqlCommand(querry, connection);
+            ExecuteQuerry($"DELETE FROM staffs WHERE staffs.id = \'{employee.id}\';");
+        }
+        public void EditStaff(Employee employee)
+        {
+            ExecuteQuerry($"UPDATE staffs SET" +
+                            $"employee.name = \'{employee.name}\', " +
+                            $"employee.dateOfBird = \'{employee.dateOfBirdString}\', " +
+                            $"employee.salary = {employee.salary}, " +
+                            $"employee.department = {employee.department}, " +
+                            $"employee.project = {employee.project}, " +
+                            $"employee.creationDate = \'{employee.creationDateString}\'" +
+                            $"WHERE staffs.id = {employee.id};");
+        }
 
-            // SQL command
-            command.ExecuteNonQuery();
+        public List<Employee> FindStaff(string emp_name)
+        {
+            return GetEmployees($"SELECT * FROM staffs WHERE staffs.fullName LIKE '%{emp_name}%';");
+        }
+
+        private void ExecuteQuerry(string querry)
+        {
+            try
+            {
+                var connection = GetSqlConnection();
+                connection.Open();
+
+                // Create new SQL Command to execute querry
+                var command = new MySqlCommand(querry, connection);
+
+                // Execute SQL querry
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

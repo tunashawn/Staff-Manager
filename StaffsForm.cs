@@ -18,7 +18,7 @@ namespace Employee_Manager
         {
             InitializeComponent();
             db = new MySQLHelper();
-            var d_list = db.GetStaffs();
+            var d_list = db.GetEmployees();
             staffs_grid.DataSource = d_list;
 
 
@@ -40,26 +40,26 @@ namespace Employee_Manager
         private void add_button_Click(object sender, EventArgs e)
         {
             // 
-            var staff = new Staff();
+            var employee = new Employee();
 
-            // Get staff ID
-            staff.id = int.Parse(id_textbox.Text);
+            // Get employee ID
+            employee.id = int.Parse(id_textbox.Text);
             // Get Name
-            staff.name = name_textbox.Text;
+            employee.name = name_textbox.Text;
             // Get Date of Birth
-            staff.dateOfBirth = dateOfBirth_box.Value;
+            employee.dateOfBirth = dateOfBirth_box.Value;
             // Get Salary
-            staff.salary = Double.Parse(salary_textbox.Text);
+            employee.salary = Double.Parse(salary_textbox.Text);
             // Get ID of selected department
             Department selected_dep = (Department)department_dropdown.SelectedItem;
-            staff.department = selected_dep.id.ToString();
+            employee.department = selected_dep.id.ToString();
             // Get ID of selected project
             Project selected_pro = (Project)project_dropdown.SelectedItem;
-            staff.project = selected_pro.id.ToString();
+            employee.project = selected_pro.id.ToString();
             // Get Creation Date
-            staff.creationDate = creation_date_box.Value;
+            employee.creationDate = creation_date_box.Value;
 
-            db.AddNewStaff(staff);
+            db.AddNewStaff(employee);
 
             this.Refresh();
         }
