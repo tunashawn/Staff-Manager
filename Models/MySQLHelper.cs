@@ -96,9 +96,10 @@ namespace Employee_Manager.Models
             
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection); //Close connection asap
                
-            var temp = new Staff();
+            
             while (reader.Read())
             {
+                var temp = new Staff();
                 temp.id = reader.GetInt32(0);
                 temp.name = reader.GetString(1);
                 temp.dateOfBirth = reader.GetDateTime(2);
@@ -122,9 +123,9 @@ namespace Employee_Manager.Models
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            var temp = new Department();
             while (reader.Read())
             {
+                var temp = new Department();
                 temp.id= reader.GetInt32(0);
                 temp.dep_name = reader.GetString(1);
                 temp.creationDate= reader.GetDateTime(2);
@@ -144,15 +145,38 @@ namespace Employee_Manager.Models
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            var temp = new Project();
             while (reader.Read())
             {
+                var temp = new Project();
                 temp.id= reader.GetInt32(0);
                 temp.pro_name = reader.GetString(1);
                 temp.creationDate = reader.GetDateTime(2);
                 projects.Add(temp);
             }
             return projects;
+        }
+
+
+        public void AddNewStaff(Staff staff)
+        {
+            sqlExecuter($"INSERT INTO staffs VALUES(" +
+                $"{staff.id}, " +
+                $"\'{staff.name}\', " +
+                $"\'{staff.dateOfBirdString}\', " +
+                $"{staff.salary}, " +
+                $"{staff.department}, " +
+                $"{staff.project}, " +
+                $"\'{staff.creationDateString}\');");
+        }
+
+        private void sqlExecuter(string querry)
+        {
+            var connection = GetSqlConnection();
+            connection.Open();
+            var command = new MySqlCommand(querry, connection);
+
+            // SQL command
+            command.ExecuteNonQuery();
         }
     }
 }

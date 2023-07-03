@@ -15,6 +15,30 @@ namespace Employee_Manager
         public Home()
         {
             InitializeComponent();
+            content_panel.Controls.Clear();
+            var d = new DepartmentsForm();
+            content_panel.Controls.Add(d);
+        }
+
+        private void department_button_Click(object sender, EventArgs e)
+        {
+            content_panel.Controls.Clear();
+            var d = new DepartmentsForm();
+            content_panel.Controls.Add(d);
+        }
+
+        private void project_button_Click(object sender, EventArgs e)
+        {
+            content_panel.Controls.Clear();
+            var p = new ProjectsForm();
+            content_panel.Controls.Add(p);
+        }
+
+        private void staff_button_Click(object sender, EventArgs e)
+        {
+            content_panel.Controls.Clear();
+            var s = new StaffsForm();
+            content_panel.Controls.Add(s);
         }
     }
 }
