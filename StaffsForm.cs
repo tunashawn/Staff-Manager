@@ -150,11 +150,6 @@ namespace Employee_Manager
             employees_grid.Refresh();
         }
 
-        private void select_id_button_Click(object sender, EventArgs e)
-        {
-            Employee emp = db.GetEmployee(int.Parse(select_id_textbox.Text));
-            FillForm(emp);
-        }
 
         private void FillForm( Employee emp )
         {
