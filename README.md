@@ -15,6 +15,10 @@
 - Add, Delete, Edit, Search for Staffs, Departments, and Projects
 - Select row from table to fill the form for quick editting
 
+### How to run:
+
+Install MariaDB and import the MariaDB_Settings.txt from folder MariaDB
+
 
 ![Screenshot 2023-07-04 175145](https://github.com/tunashawn/Staff-Manager/assets/73065657/22f0eba8-d5d7-40e1-b53d-2bef7475bc77)
 
