@@ -3,6 +3,8 @@
 
 ### Just a CRUD project using winform .NET framework, MVC architecture, and MariaDB
 
+I made this project from scratch in 2 days while learning C# as a part of requested projects for my internship
+
 
 **Finished:** 
 - Employees
@@ -20,6 +22,8 @@
 Install MariaDB and import the MariaDB_Settings.txt from folder MariaDB
 
 ### Screenshots
+
+[YOUTUBE VIDEO](https://youtu.be/WCvuehnJNDY)
 
 ![Screenshot 2023-07-04 175145](https://github.com/tunashawn/Staff-Manager/assets/73065657/22f0eba8-d5d7-40e1-b53d-2bef7475bc77)
 
