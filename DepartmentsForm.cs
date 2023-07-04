@@ -1,12 +1,5 @@
 ﻿using Employee_Manager.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Employee_Manager
@@ -21,46 +14,7 @@ namespace Employee_Manager
             var d_list = db.GetDepartments();
             department_datagrid.DataSource = d_list;
         }
-
-        private void Departments_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void id_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void department_name_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void find_button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void delete_button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void add_button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void edit_button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private Department GetInput()
         {
@@ -73,9 +27,21 @@ namespace Employee_Manager
 
         private void add_button_Click_1(object sender, EventArgs e)
         {
-            var d = GetInput();
-            db.AddDepartment(d);
-            RefreshTable();
+
+            try
+            {
+                var d = GetInput();
+
+                db.AddDepartment(d);
+
+                RefreshTable();
+                MessageBox.Show("ADDED SUCCESSFULLY!");
+            }
+            catch
+            {
+                MessageBox.Show("ERROR! CANNOT ADD THIS DEPARTMENT");
+            }
+            
         }
 
         private void clear_button_Click(object sender, EventArgs e)
@@ -86,22 +52,54 @@ namespace Employee_Manager
 
         private void delete_button_Click_1(object sender, EventArgs e)
         {
-            var id = id_textbox.Text;
-            db.RemoveDepartment(id);
-            RefreshTable();
+            
+            if ((MessageBox.Show("ARE YOU SURE DELETING THIS DEPARTMENT?", "DELETE DEPARTMENT?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            {
+                try
+                {
+                    var id = id_textbox.Text;
+
+                    db.RemoveDepartment(id);
+
+                    RefreshTable();
+                    MessageBox.Show("DELETE SUCCESSFULLY!");
+                }
+                catch
+                {
+                    MessageBox.Show("ERROR! CANNOT DELETE THIS DEPARTMENT");
+                }
+            }
         }
 
         private void edit_button_Click_1(object sender, EventArgs e)
         {
-            var d = GetInput();
-            db.EditDepartment(d);
             
-            RefreshTable();
+
+            if ((MessageBox.Show("ARE YOU SURE UPDATING THIS DEPARTMENT?", "UPDATING DEPARTMENT?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            {
+                try
+                {
+                    var d = GetInput();
+
+                    db.EditDepartment(d);
+
+                    RefreshTable();
+                    MessageBox.Show("DELETE SUCCESSFULLY!");
+                }
+                catch
+                {
+                    MessageBox.Show("ERROR! CANNOT UPDATE THIS DEPARTMENT");
+                }
+            }
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            var searchKey = search_textbox.Text;
+            var searchKey = search_textbox.Text.Trim();
             var dep_list = db.FindDepartments(searchKey);
             department_datagrid.DataSource = dep_list;
             department_datagrid.Update();

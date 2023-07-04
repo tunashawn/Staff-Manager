@@ -70,28 +70,26 @@ namespace Employee_Manager
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            if ((MessageBox.Show("DO YOU WANT TO ADD THIS EMPLOYEE?", "Add new employee?",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
-            {
-                try {
-                    var employee = GetInputEmployee();
 
-                    db.AddNewEmployee(employee);
+            try {
+                var employee = GetInputEmployee();
 
-                    MessageBox.Show($"SUCCESSFULLY ADDED {employee.name}");
+                db.AddNewEmployee(employee);
+
+                MessageBox.Show($"SUCCESSFULLY ADDED {employee.name}");
                     
-                    RefreshTable();
-                } catch {
-                }
+                RefreshTable();
+            } catch {
+                MessageBox.Show("ERROR! CANNOT ADD THIS EMPLOYEE!");
             }
+            
             
         }
 
         private void edit_button_Click(object sender, EventArgs e)
         {
             var employee = GetInputEmployee();
-            if ((MessageBox.Show($"DO YOU WANT TO APPLY EDITS ON {employee.name}?", "EDITING",
+            if ((MessageBox.Show($"DO YOU WANT TO APPLY UPDATES ON {employee.name}?", "UPDATING",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
             {
@@ -99,19 +97,20 @@ namespace Employee_Manager
                 {
                     db.EditEmployee(employee);
 
-                    MessageBox.Show($"SUCCESSFULLY EDIT {employee.name}");
+                    MessageBox.Show($"SUCCESSFULLY UPDATE {employee.name}");
 
                     RefreshTable();
                 }
                 catch
                 {
+                    MessageBox.Show($"CANNOT UPDATE {employee.name}!");
                 }
             }
         }
 
         private void delete_button_Click(object sender, EventArgs e)
         {
-            if ((MessageBox.Show("DO YOU WANT TO DELETE THIS EMPLOYEE?", "DELETE EMPLOYEE?",
+            if ((MessageBox.Show("DO YOU WANT TO DELETE THIS EMPLOYEE?", "DELETING?",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
             {
@@ -138,10 +137,6 @@ namespace Employee_Manager
             creation_date_box.Value = DateTime.Today;
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void search_button_Click(object sender, EventArgs e)
         {

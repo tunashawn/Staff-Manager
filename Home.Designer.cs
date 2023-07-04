@@ -113,8 +113,8 @@
             this.welcome_message.Name = "welcome_message";
             this.welcome_message.Size = new System.Drawing.Size(200, 50);
             this.welcome_message.TabIndex = 0;
-            this.welcome_message.Text = "Welcome Tuna Shawn";
-            this.welcome_message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.welcome_message.Text = "Welcome user";
+            this.welcome_message.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // content_panel
             // 
@@ -148,9 +148,9 @@
             this.header_label.ForeColor = System.Drawing.Color.White;
             this.header_label.Location = new System.Drawing.Point(525, 9);
             this.header_label.Name = "header_label";
-            this.header_label.Size = new System.Drawing.Size(106, 33);
+            this.header_label.Size = new System.Drawing.Size(95, 33);
             this.header_label.TabIndex = 1;
-            this.header_label.Text = "HOME";
+            this.header_label.Text = "Staffs";
             this.header_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exit

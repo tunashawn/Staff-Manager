@@ -17,6 +17,31 @@ namespace Employee_Manager.Models
 
         }
 
+        public Employee Login(string username, string password)
+        {
+            var id = -1;
+            try
+            {
+                var reader = GetReader($"SELECT u.staff FROM users AS u WHERE u.username = \"{username}\" AND u.`password` = \"{password}\";");
+
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            if (id != -1)
+            {
+                return new EmployeeSQLHelper().GetEmployee(id);
+            }
+
+            return null;
+        }
+
         private MySqlConnection GetSqlConnection() {
             var builder = new MySqlConnectionStringBuilder
             {

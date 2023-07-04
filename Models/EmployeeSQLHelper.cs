@@ -7,30 +7,7 @@ namespace Employee_Manager.Models
     public class EmployeeSQLHelper : MySQLHelper
     {
         public EmployeeSQLHelper() { }
-        public Employee Login(string username, string password)
-        {
-            var id = -1;
-            try
-            {
-                var reader = GetReader($"SELECT u.employee FROM users AS u WHERE u.username = \"{username}\" AND u.`password` = \"{password}\";");
-
-                while (reader.Read())
-                {
-                    id = reader.GetInt32(0);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            if (id != -1)
-            {
-                return GetEmployee(id);
-            }
-
-            return null;
-        }
+        
 
         private Employee EmployeeReader(MySqlDataReader reader)
         {
@@ -40,7 +17,7 @@ namespace Employee_Manager.Models
                 name = reader.GetString(1),
                 dateOfBirth = reader.GetDateTime(2),
                 salary = reader.GetDouble(3),
-                department = reader.GetValue(4).ToString(),
+                department = (reader.GetValue(4).ToString() is null) ? "" : reader.GetValue(4).ToString(),
                 project = reader.GetValue(5).ToString(),
                 creationDate = reader.GetDateTime(6)
             };

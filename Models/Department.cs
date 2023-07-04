@@ -9,7 +9,7 @@ namespace Employee_Manager.Models
     public class Department
     {
         public int id { get; set; }
-        public string dep_name { get; set; }
+        public String dep_name { get; set; }
         public DateTime creationDate { get; set; }
         public String creationDateString { get => creationDate.ToString("yyyy-MM-dd"); }
 

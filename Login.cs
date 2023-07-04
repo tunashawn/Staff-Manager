@@ -9,9 +9,6 @@ namespace Employee_Manager
         public Login()
         {
             InitializeComponent();
-            this.Hide();
-            Form home = new Home();
-            home.Show();
 
         }
 
@@ -21,19 +18,17 @@ namespace Employee_Manager
             var password = password_tb.Text;
             var login = new MySQLHelper();
 
-
-
-
-            /*  if (login.Login(username, password) != null)
-              {
-                  Form home = new Home();
-                  home.Show();
-                  this.Hide();
-              }
-              else
-              {
-                  MessageBox.Show("Wrong username or password!");
-              }*/
+            var verify = login.Login(username, password);
+            if ( verify != null)
+            {
+                Form home = new Home(verify.name);
+                home.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Wrong username or password!");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

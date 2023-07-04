@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.search_textbox = new System.Windows.Forms.TextBox();
             this.search_button = new System.Windows.Forms.Button();
@@ -45,10 +45,10 @@
             this.department_name_textbox = new System.Windows.Forms.TextBox();
             this.id_textbox = new System.Windows.Forms.TextBox();
             this.department_datagrid = new System.Windows.Forms.DataGridView();
+            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.depnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.department_datagrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
@@ -109,7 +109,6 @@
             this.label9.Size = new System.Drawing.Size(185, 20);
             this.label9.TabIndex = 43;
             this.label9.Text = "Search department name";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // add_button
             // 
@@ -206,9 +205,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(60, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 25);
+            this.label1.Size = new System.Drawing.Size(142, 25);
             this.label1.TabIndex = 3;
-            this.label1.Text = "ID";
+            this.label1.Text = "Department ID";
             // 
             // department_name_textbox
             // 
@@ -217,7 +216,6 @@
             this.department_name_textbox.Name = "department_name_textbox";
             this.department_name_textbox.Size = new System.Drawing.Size(274, 29);
             this.department_name_textbox.TabIndex = 2;
-            this.department_name_textbox.TextChanged += new System.EventHandler(this.department_name_textbox_TextChanged);
             // 
             // id_textbox
             // 
@@ -226,7 +224,6 @@
             this.id_textbox.Name = "id_textbox";
             this.id_textbox.Size = new System.Drawing.Size(274, 29);
             this.id_textbox.TabIndex = 1;
-            this.id_textbox.TextChanged += new System.EventHandler(this.id_textbox_TextChanged);
             // 
             // department_datagrid
             // 
@@ -234,14 +231,14 @@
             this.department_datagrid.AllowUserToDeleteRows = false;
             this.department_datagrid.AutoGenerateColumns = false;
             this.department_datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.department_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.department_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.department_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.department_datagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -258,10 +255,14 @@
             this.department_datagrid.TabIndex = 0;
             this.department_datagrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectARow);
             // 
+            // departmentBindingSource
+            // 
+            this.departmentBindingSource.DataSource = typeof(Employee_Manager.Models.Department);
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 50;
@@ -269,7 +270,7 @@
             // depnameDataGridViewTextBoxColumn
             // 
             this.depnameDataGridViewTextBoxColumn.DataPropertyName = "dep_name";
-            this.depnameDataGridViewTextBoxColumn.HeaderText = "dep_name";
+            this.depnameDataGridViewTextBoxColumn.HeaderText = "Department Name";
             this.depnameDataGridViewTextBoxColumn.Name = "depnameDataGridViewTextBoxColumn";
             this.depnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.depnameDataGridViewTextBoxColumn.Width = 280;
@@ -277,14 +278,10 @@
             // creationDateDataGridViewTextBoxColumn
             // 
             this.creationDateDataGridViewTextBoxColumn.DataPropertyName = "creationDate";
-            this.creationDateDataGridViewTextBoxColumn.HeaderText = "creationDate";
+            this.creationDateDataGridViewTextBoxColumn.HeaderText = "Creation Date";
             this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
             this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.creationDateDataGridViewTextBoxColumn.Width = 130;
-            // 
-            // departmentBindingSource
-            // 
-            this.departmentBindingSource.DataSource = typeof(Employee_Manager.Models.Department);
             // 
             // DepartmentsForm
             // 
@@ -294,7 +291,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "DepartmentsForm";
             this.Size = new System.Drawing.Size(900, 700);
-            this.Load += new System.EventHandler(this.Departments_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.department_datagrid)).EndInit();

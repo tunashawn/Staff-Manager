@@ -32,12 +32,13 @@ namespace Employee_Manager
             }
         }
 
-        public Home()
+        public Home(string user_name)
         {
             InitializeComponent();
             content_panel.Controls.Clear();
             var s = new StaffsForm();
             content_panel.Controls.Add(s);
+            welcome_message.Text = $"Welcome {user_name}";
         }
 
         private void department_button_Click(object sender, EventArgs e)
