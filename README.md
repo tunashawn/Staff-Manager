@@ -4,9 +4,10 @@
 
 **Finished:** 
 - Employees
+- Departments
 
 **On going:** 
-- Departments
+
 - Projects
 - Login
 
