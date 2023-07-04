@@ -35,7 +35,7 @@
             this.welcome_message = new System.Windows.Forms.Label();
             this.content_panel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.header_label = new System.Windows.Forms.Label();
             this.exit = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +128,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.header_label);
             this.panel2.Controls.Add(this.exit);
             this.panel2.Controls.Add(this.welcome_message);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -138,18 +138,20 @@
             this.panel2.TabIndex = 0;
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toppanel_MouseMove);
             // 
-            // label1
+            // header_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(525, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 33);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "HOME";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.header_label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.header_label.AutoSize = true;
+            this.header_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.header_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.header_label.ForeColor = System.Drawing.Color.White;
+            this.header_label.Location = new System.Drawing.Point(525, 9);
+            this.header_label.Name = "header_label";
+            this.header_label.Size = new System.Drawing.Size(106, 33);
+            this.header_label.TabIndex = 1;
+            this.header_label.Text = "HOME";
+            this.header_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exit
             // 
@@ -196,6 +198,6 @@
         private System.Windows.Forms.Panel content_panel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button exit;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label header_label;
     }
 }

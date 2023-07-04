@@ -45,6 +45,7 @@ namespace Employee_Manager
             content_panel.Controls.Clear();
             var d = new DepartmentsForm();
             content_panel.Controls.Add(d);
+            change_header("Departments");
         }
 
         private void project_button_Click(object sender, EventArgs e)
@@ -52,6 +53,7 @@ namespace Employee_Manager
             content_panel.Controls.Clear();
             var p = new ProjectsForm();
             content_panel.Controls.Add(p);
+            change_header("Projects");
         }
 
         private void staff_button_Click(object sender, EventArgs e)
@@ -59,11 +61,17 @@ namespace Employee_Manager
             content_panel.Controls.Clear();
             var s = new StaffsForm();
             content_panel.Controls.Add(s);
+            change_header("Staffs");
         }
 
         private void exit_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void change_header(string h)
+        {
+            header_label.Text = h;
         }
     }
 }
