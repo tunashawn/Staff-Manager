@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.welcome_message = new System.Windows.Forms.Label();
+            this.staff_button = new System.Windows.Forms.Button();
             this.department_button = new System.Windows.Forms.Button();
             this.project_button = new System.Windows.Forms.Button();
-            this.staff_button = new System.Windows.Forms.Button();
+            this.welcome_message = new System.Windows.Forms.Label();
             this.content_panel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.exit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.exit = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -55,18 +55,21 @@
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // welcome_message
+            // staff_button
             // 
-            this.welcome_message.BackColor = System.Drawing.Color.Black;
-            this.welcome_message.Dock = System.Windows.Forms.DockStyle.Left;
-            this.welcome_message.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_message.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.welcome_message.Location = new System.Drawing.Point(0, 0);
-            this.welcome_message.Name = "welcome_message";
-            this.welcome_message.Size = new System.Drawing.Size(200, 50);
-            this.welcome_message.TabIndex = 0;
-            this.welcome_message.Text = "Welcome Tuna Shawn";
-            this.welcome_message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.staff_button.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.staff_button.FlatAppearance.BorderSize = 0;
+            this.staff_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.staff_button.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.staff_button.ForeColor = System.Drawing.Color.White;
+            this.staff_button.Location = new System.Drawing.Point(0, 0);
+            this.staff_button.Margin = new System.Windows.Forms.Padding(0);
+            this.staff_button.Name = "staff_button";
+            this.staff_button.Size = new System.Drawing.Size(200, 69);
+            this.staff_button.TabIndex = 0;
+            this.staff_button.Text = "Staffs";
+            this.staff_button.UseVisualStyleBackColor = true;
+            this.staff_button.Click += new System.EventHandler(this.staff_button_Click);
             // 
             // department_button
             // 
@@ -100,25 +103,23 @@
             this.project_button.UseVisualStyleBackColor = true;
             this.project_button.Click += new System.EventHandler(this.project_button_Click);
             // 
-            // staff_button
+            // welcome_message
             // 
-            this.staff_button.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.staff_button.FlatAppearance.BorderSize = 0;
-            this.staff_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.staff_button.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.staff_button.ForeColor = System.Drawing.Color.White;
-            this.staff_button.Location = new System.Drawing.Point(0, 0);
-            this.staff_button.Margin = new System.Windows.Forms.Padding(0);
-            this.staff_button.Name = "staff_button";
-            this.staff_button.Size = new System.Drawing.Size(200, 69);
-            this.staff_button.TabIndex = 0;
-            this.staff_button.Text = "Staffs";
-            this.staff_button.UseVisualStyleBackColor = true;
-            this.staff_button.Click += new System.EventHandler(this.staff_button_Click);
+            this.welcome_message.BackColor = System.Drawing.Color.Black;
+            this.welcome_message.Dock = System.Windows.Forms.DockStyle.Left;
+            this.welcome_message.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome_message.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.welcome_message.Location = new System.Drawing.Point(0, 0);
+            this.welcome_message.Name = "welcome_message";
+            this.welcome_message.Size = new System.Drawing.Size(200, 50);
+            this.welcome_message.TabIndex = 0;
+            this.welcome_message.Text = "Welcome Tuna Shawn";
+            this.welcome_message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // content_panel
             // 
             this.content_panel.BackColor = System.Drawing.Color.White;
+            this.content_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.content_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.content_panel.Location = new System.Drawing.Point(200, 50);
             this.content_panel.Name = "content_panel";
@@ -135,20 +136,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1100, 50);
             this.panel2.TabIndex = 0;
-            // 
-            // exit
-            // 
-            this.exit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.exit.FlatAppearance.BorderSize = 0;
-            this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.exit.Location = new System.Drawing.Point(1050, 0);
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(50, 50);
-            this.exit.TabIndex = 0;
-            this.exit.Text = "❌";
-            this.exit.UseVisualStyleBackColor = true;
+            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toppanel_MouseMove);
             // 
             // label1
             // 
@@ -163,6 +151,21 @@
             this.label1.Text = "HOME";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // exit
+            // 
+            this.exit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.exit.FlatAppearance.BorderSize = 0;
+            this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.exit.Location = new System.Drawing.Point(1050, 0);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(50, 50);
+            this.exit.TabIndex = 0;
+            this.exit.Text = "❌";
+            this.exit.UseVisualStyleBackColor = true;
+            this.exit.Click += new System.EventHandler(this.exit_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,6 +177,7 @@
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

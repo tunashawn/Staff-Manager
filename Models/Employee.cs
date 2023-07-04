@@ -18,7 +18,7 @@ namespace Employee_Manager.Models
         public DateTime creationDate { get; set; }
         public String creationDateString { get => creationDate.ToString("yyyy-MM-dd"); }
 
-        public string ToString()
+        public override string ToString()
         {
             return $"\nEmployee Information:" +
                 $"\nID = {this.id}" +

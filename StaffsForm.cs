@@ -14,17 +14,17 @@ namespace Employee_Manager
 {   
     public partial class StaffsForm : UserControl
     {
-        public static MySQLHelper db;
+        public static EmployeeSQLHelper db;
         public StaffsForm()
         {
             InitializeComponent();
-            db = new MySQLHelper();
+            db = new EmployeeSQLHelper();
             var d_list = db.GetEmployees();
             employees_grid.DataSource = d_list;
 
 
             /* Loading departments dropdown*/
-            var departments = db.GetDepartments();
+            var departments = new DepartmentsSQLHelper().GetDepartments();
             department_dropdown.DataSource = departments;
             department_dropdown.DisplayMember = "dep_name";
             department_dropdown.ValueMember = "id";
@@ -153,14 +153,30 @@ namespace Employee_Manager
         private void select_id_button_Click(object sender, EventArgs e)
         {
             Employee emp = db.GetEmployee(int.Parse(select_id_textbox.Text));
+            FillForm(emp);
+        }
+
+        private void FillForm( Employee emp )
+        {
             id_textbox.Text = emp.id.ToString();
-            name_textbox.Text= emp.name;
+            name_textbox.Text = emp.name;
             dateOfBirth_box.Value = emp.dateOfBirth;
             salary_textbox.Text = emp.salary.ToString();
             department_dropdown.Text = emp.department;
             project_dropdown.Text = emp.project;
             creation_date_box.Value = emp.creationDate;
+        }
 
+        private void SelectRowAction(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (DataGridViewRow row in this.employees_grid.SelectedRows)
+            {
+                Employee emp = row.DataBoundItem as Employee;
+                if (emp != null)
+                {
+                    FillForm(emp);
+                }
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Employee_Manager
         public ProjectsForm()
         {
             InitializeComponent();
-            var connect = new MySQLHelper();
+            var connect = new EmployeeSQLHelper();
             var d_list = connect.GetProjects();
             projects_grid.DataSource = d_list;
         }

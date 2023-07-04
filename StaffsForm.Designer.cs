@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.employees_grid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.project_dropdown = new System.Windows.Forms.ComboBox();
@@ -50,9 +51,10 @@
             this.delete_button = new System.Windows.Forms.Button();
             this.clear_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.search_button = new System.Windows.Forms.Button();
-            this.search_textbox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.search_textbox = new System.Windows.Forms.TextBox();
+            this.search_button = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,10 +63,6 @@
             this.projectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.select_id_button = new System.Windows.Forms.Button();
-            this.select_id_textbox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.employees_grid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,6 +76,14 @@
             this.employees_grid.AllowUserToDeleteRows = false;
             this.employees_grid.AutoGenerateColumns = false;
             this.employees_grid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.employees_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.employees_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.employees_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -92,8 +98,10 @@
             this.employees_grid.Margin = new System.Windows.Forms.Padding(10);
             this.employees_grid.Name = "employees_grid";
             this.employees_grid.ReadOnly = true;
+            this.employees_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.employees_grid.Size = new System.Drawing.Size(880, 322);
             this.employees_grid.TabIndex = 0;
+            this.employees_grid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectRowAction);
             // 
             // panel1
             // 
@@ -320,6 +328,29 @@
             this.panel2.Size = new System.Drawing.Size(900, 700);
             this.panel2.TabIndex = 29;
             // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.search_textbox);
+            this.panel3.Controls.Add(this.search_button);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.add_button);
+            this.panel3.Controls.Add(this.clear_button);
+            this.panel3.Controls.Add(this.delete_button);
+            this.panel3.Controls.Add(this.edit_button);
+            this.panel3.Location = new System.Drawing.Point(544, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(346, 338);
+            this.panel3.TabIndex = 32;
+            // 
+            // search_textbox
+            // 
+            this.search_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_textbox.Location = new System.Drawing.Point(41, 63);
+            this.search_textbox.Name = "search_textbox";
+            this.search_textbox.Size = new System.Drawing.Size(205, 26);
+            this.search_textbox.TabIndex = 30;
+            // 
             // search_button
             // 
             this.search_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(235)))), ((int)(((byte)(247)))));
@@ -335,31 +366,15 @@
             this.search_button.UseVisualStyleBackColor = false;
             this.search_button.Click += new System.EventHandler(this.search_button_Click);
             // 
-            // search_textbox
+            // label9
             // 
-            this.search_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_textbox.Location = new System.Drawing.Point(41, 63);
-            this.search_textbox.Name = "search_textbox";
-            this.search_textbox.Size = new System.Drawing.Size(205, 26);
-            this.search_textbox.TabIndex = 30;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.search_textbox);
-            this.panel3.Controls.Add(this.search_button);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.select_id_button);
-            this.panel3.Controls.Add(this.select_id_textbox);
-            this.panel3.Controls.Add(this.add_button);
-            this.panel3.Controls.Add(this.clear_button);
-            this.panel3.Controls.Add(this.delete_button);
-            this.panel3.Controls.Add(this.edit_button);
-            this.panel3.Location = new System.Drawing.Point(544, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(346, 338);
-            this.panel3.TabIndex = 32;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(37, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 20);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Search for name";
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -367,6 +382,7 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 50;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -374,6 +390,7 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // dateOfBirthDataGridViewTextBoxColumn
             // 
@@ -395,6 +412,7 @@
             this.departmentDataGridViewTextBoxColumn.HeaderText = "department";
             this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
             this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            this.departmentDataGridViewTextBoxColumn.Width = 150;
             // 
             // projectDataGridViewTextBoxColumn
             // 
@@ -402,6 +420,7 @@
             this.projectDataGridViewTextBoxColumn.HeaderText = "project";
             this.projectDataGridViewTextBoxColumn.Name = "projectDataGridViewTextBoxColumn";
             this.projectDataGridViewTextBoxColumn.ReadOnly = true;
+            this.projectDataGridViewTextBoxColumn.Width = 150;
             // 
             // creationDateDataGridViewTextBoxColumn
             // 
@@ -409,54 +428,11 @@
             this.creationDateDataGridViewTextBoxColumn.HeaderText = "creationDate";
             this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
             this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.creationDateDataGridViewTextBoxColumn.Width = 80;
             // 
             // staffBindingSource
             // 
             this.staffBindingSource.DataSource = typeof(Employee_Manager.Models.Employee);
-            // 
-            // select_id_button
-            // 
-            this.select_id_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(235)))), ((int)(((byte)(247)))));
-            this.select_id_button.FlatAppearance.BorderSize = 0;
-            this.select_id_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.select_id_button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.select_id_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(113)))), ((int)(((byte)(203)))));
-            this.select_id_button.Location = new System.Drawing.Point(255, 119);
-            this.select_id_button.Name = "select_id_button";
-            this.select_id_button.Size = new System.Drawing.Size(61, 26);
-            this.select_id_button.TabIndex = 34;
-            this.select_id_button.Text = "Select";
-            this.select_id_button.UseVisualStyleBackColor = false;
-            this.select_id_button.Click += new System.EventHandler(this.select_id_button_Click);
-            // 
-            // select_id_textbox
-            // 
-            this.select_id_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.select_id_textbox.Location = new System.Drawing.Point(41, 119);
-            this.select_id_textbox.Name = "select_id_textbox";
-            this.select_id_textbox.Size = new System.Drawing.Size(204, 26);
-            this.select_id_textbox.TabIndex = 33;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(37, 92);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 20);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Enter ID to fill form";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(37, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 20);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Search for name";
             // 
             // StaffsForm
             // 
@@ -481,13 +457,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView employees_grid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn projectDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn creationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource staffBindingSource;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dateOfBirth_box;
@@ -513,8 +482,12 @@
         private System.Windows.Forms.Button search_button;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button select_id_button;
-        private System.Windows.Forms.TextBox select_id_textbox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn projectDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn creationDateDataGridViewTextBoxColumn;
     }
 }
